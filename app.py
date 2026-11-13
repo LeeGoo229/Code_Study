@@ -14,6 +14,7 @@ from modules.notebook_loader import (
     get_unit_by_key,
     load_theory_content,
     load_practice_and_answers,
+    load_cheat_sheet_sections,
     BASE_DIR
 )
 from modules.python_runner import run_python_code
@@ -143,8 +144,25 @@ if selected_subject == "🐍 Python 실습실":
         cheat_tabs = st.tabs(["📄 마크다운 가이드", "🌐 원본 HTML 리포트"])
         
         with cheat_tabs[0]:
-            content = load_theory_content(unit_info)
-            st.markdown(content)
+            sections = load_cheat_sheet_sections(unit_info.get("md_path"))
+            section_keys = list(sections.keys())
+            
+            st.caption("💡 아래 주제 태그를 클릭하면 원하는 치트시트로 즉시 이동할 수 있습니다.")
+            selected_sec = st.pills(
+                "치트시트 주제 바로가기",
+                options=section_keys,
+                default=section_keys[0],
+                label_visibility="collapsed"
+            )
+            
+            st.markdown("---")
+            target_content = sections.get(selected_sec, sections[section_keys[0]])
+            st.markdown(target_content, unsafe_allow_html=True)
+            
+            if selected_sec != section_keys[0]:
+                st.markdown("---")
+                if st.button("📖 전체 가이드북 보기로 돌아가기", use_container_width=True):
+                    st.rerun()
             
         with cheat_tabs[1]:
             html_path = unit_info.get("html_path")
@@ -205,12 +223,8 @@ if selected_subject == "🐍 Python 실습실":
                 curr_q = questions[q_idx]
                 
                 # 문제 지시문 카드
-                st.markdown(f"""
-                <div class="study-card">
-                    <h4>{curr_q['title']}</h4>
-                    {curr_q['description']}
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown(f'<div class="study-card"><h4>🎯 {curr_q["title"]}</h4></div>', unsafe_allow_html=True)
+                st.markdown(curr_q["description"])
                 
                 # 코드 에디터
                 code_key = f"code_{unit_info['key']}_{curr_q['id']}"

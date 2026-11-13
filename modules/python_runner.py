@@ -10,9 +10,15 @@ import os
 import traceback
 from pathlib import Path
 from typing import Dict, Any, List, Optional
-import matplotlib
-matplotlib.use("Agg")  # GUI 없는 환경(웹 서버)용 백엔드
-import matplotlib.pyplot as plt
+try:
+    import matplotlib
+    matplotlib.use("Agg")  # GUI 없는 환경(웹 서버)용 백엔드
+    import matplotlib.pyplot as plt
+    HAS_MPL = True
+except ImportError:
+    HAS_MPL = False
+    matplotlib = None
+    plt = None
 
 def run_python_code(code: str, setup_code: str = "", data_dir: str = "") -> Dict[str, Any]:
     """
@@ -24,7 +30,8 @@ def run_python_code(code: str, setup_code: str = "", data_dir: str = "") -> Dict
     old_stderr = sys.stderr
     
     # Matplotlib 이전 플롯 초기화
-    plt.close("all")
+    if HAS_MPL and plt:
+        plt.close("all")
     
     # 글로벌 실행 컨텍스트 생성
     exec_globals: Dict[str, Any] = {
@@ -87,11 +94,12 @@ def run_python_code(code: str, setup_code: str = "", data_dir: str = "") -> Dict
         success = True
         
         # 3. 생성된 Matplotlib Figure 캡처
-        fig_nums = plt.get_fignums()
-        for num in fig_nums:
-            fig = plt.figure(num)
-            if fig.axes:  # 축이 그려진 유효한 그래프만
-                figures.append(fig)
+        if HAS_MPL and plt:
+            fig_nums = plt.get_fignums()
+            for num in fig_nums:
+                fig = plt.figure(num)
+                if fig.axes:  # 축이 그려진 유효한 그래프만
+                    figures.append(fig)
                 
     except Exception as e:
         success = False

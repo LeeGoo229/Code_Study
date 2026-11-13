@@ -7,7 +7,12 @@ sql_runner.py
 
 import traceback
 from typing import Dict, Any, List, Optional
-import pandas as pd
+try:
+    import pandas as pd
+    HAS_PANDAS = True
+except ImportError:
+    HAS_PANDAS = False
+    pd = None
 
 try:
     import duckdb
@@ -136,8 +141,14 @@ class SQLEngine:
         try:
             if HAS_DUCKDB:
                 df = self.conn.execute(clean_query).fetchdf()
-            else:
+            elif HAS_PANDAS and pd:
                 df = pd.read_sql_query(clean_query, self.conn)
+            else:
+                cursor = self.conn.cursor()
+                cursor.execute(clean_query)
+                cols = [desc[0] for desc in cursor.description] if cursor.description else []
+                rows = cursor.fetchall()
+                df = [dict(zip(cols, r)) for r in rows]
                 
             return {
                 "success": True,

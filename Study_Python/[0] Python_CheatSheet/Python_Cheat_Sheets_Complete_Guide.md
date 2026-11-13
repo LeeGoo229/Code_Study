@@ -6,21 +6,22 @@
 
 ## 📂 수록 치트시트 목록
 
-1. **[Core Python](#1--core-python-치트시트-기초-문법-및-핵심-개념)** (변수, 자료형, 컬렉션, 제어문, 함수, 클래스, 가상환경 등)
-2. **[NumPy](#2--numpy-치트시트-고성능-다차원-수치-계산)** (배열 생성, 형태 변환, 브로드캐스팅, 통계 집계, 행렬 연산 등)
-3. **[Pandas](#3--pandas-치트시트-데이터-조작-및-분석)** (데이터 입출력, 필터링, 그룹 집계, 병합, 결측치 처리, 불리언 마스킹 등)
-4. **[Polars](#4--polars-치트시트-차세대-초고속-데이터프레임)** (Rust 기반 초고속 연산, 지연 실행 LazyFrame, 표현식 등)
-5. **[Scikit-Learn](#5--scikit-learn-치트시트-전통적-머신러닝-파이프라인)** (전처리, 모델 학습, 교차 검증, 하이퍼파라미터 튜닝, 전체 워크플로우)
-6. **[PyTorch](#6--pytorch-치트시트-동적-신경망-및-딥러닝)** (텐서 연산, Autograd 자동 미분, 신경망 설계, 학습 및 추론 루프)
-7. **[TensorFlow & Keras](#7--tensorflow--keras-치트시트-엔터프라이즈-ai--배포)** (tf.data 파이프라인, 모델 빌드, 조기 종료, TFLite 변환)
-8. **[Matplotlib](#8--matplotlib-치트시트-데이터-시각화)** (플롯 유형, 서브플롯, 스타일링, 고해상도 저장 및 출력)
-9. **[Seaborn](#9--seaborn-치트시트-통계적-데이터-시각화)** (통계 차트, 범주형/분포형 플롯, 히트맵, 페어플롯, 테마 & 팔레트)
+1. **[Core Python](#sec-1)** (변수, 자료형, 컬렉션, 제어문, 함수, 클래스, 가상환경 등)
+2. **[NumPy](#sec-2)** (배열 생성, 형태 변환, 브로드캐스팅, 통계 집계, 행렬 연산 등)
+3. **[Pandas](#sec-3)** (데이터 입출력, 필터링, 그룹 집계, 병합, 결측치 처리, 불리언 마스킹 등)
+4. **[Polars](#sec-4)** (Rust 기반 초고속 연산, 지연 실행 LazyFrame, 표현식 등)
+5. **[Scikit-Learn](#sec-5)** (전처리, 모델 학습, 교차 검증, 하이퍼파라미터 튜닝, 전체 워크플로우)
+6. **[PyTorch](#sec-6)** (텐서 연산, Autograd 자동 미분, 신경망 설계, 학습 및 추론 루프)
+7. **[TensorFlow & Keras](#sec-7)** (tf.data 파이프라인, 모델 빌드, 조기 종료, TFLite 변환)
+8. **[Matplotlib](#sec-8)** (플롯 유형, 서브플롯, 스타일링, 고해상도 저장 및 출력)
+9. **[Seaborn](#sec-9)** (통계 차트, 범주형/분포형 플롯, 히트맵, 페어플롯, 테마 & 팔레트)
+10. **[Matplotlib vs Seaborn 비교 가이드](#sec-10)** (라이브러리별 강점 및 실무 선택 가이드)
+
 
 ---
 
+<span id="sec-1"></span>
 ## 1. 🐍 Core Python 치트시트 (기초 문법 및 핵심 개념)
-
-![Core Python](./slides/slide_1.jpg)
 
 ### 핵심 문법 정리표
 | 항목 | 문법 / 코드 | 상세 설명 |
@@ -49,9 +50,8 @@
 
 ---
 
+<span id="sec-2"></span>
 ## 2. 🔢 NumPy 치트시트 (고성능 다차원 수치 계산)
-
-![NumPy](./slides/slide_2.jpg)
 
 ### 핵심 코드 및 기능
 ```python
@@ -97,9 +97,8 @@ np.split(arr, 3)             # 3개 파트로 균등 분할
 
 ---
 
+<span id="sec-3"></span>
 ## 3. 🐼 Pandas 치트시트 (데이터 조작 및 분석)
-
-![Pandas](./slides/slide_3.jpg)
 
 ### 주요 기능별 사용법
 ```python
@@ -143,9 +142,8 @@ df['col'].str.lower()        # 문자열 소문자 변환 (.upper(), .contains()
 
 ---
 
+<span id="sec-4"></span>
 ## 4. ⚡ Polars 치트시트 (차세대 초고속 데이터프레임)
-
-![Polars](./slides/slide_4.jpg)
 
 ### 핵심 개념 및 문법
 ```python
@@ -194,9 +192,8 @@ df.describe()                # 요약 통계량 확인
 
 ---
 
+<span id="sec-5"></span>
 ## 5. 🤖 Scikit-Learn 치트시트 (전통적 머신러닝 파이프라인)
-
-![Scikit-Learn](./slides/slide_5.jpg)
 
 ### 머신러닝 모델 구축 표준 절차 (`Load Data → Split → Preprocess → Train → Evaluate → Save`)
 ```python
@@ -235,9 +232,8 @@ model = joblib.load('model.pkl')
 
 ---
 
+<span id="sec-6"></span>
 ## 6. 🔥 PyTorch 치트시트 (동적 신경망 및 딥러닝)
-
-![PyTorch](./slides/slide_6.jpg)
 
 ### PyTorch 핵심 패턴
 ```python
@@ -282,9 +278,8 @@ with torch.no_grad():
 
 ---
 
+<span id="sec-7"></span>
 ## 7. 🔶 TensorFlow & Keras 치트시트 (엔터프라이즈 AI & 배포)
-
-![TensorFlow](./slides/slide_7.jpg)
 
 ### TensorFlow / Keras 워크플로우
 ```python
@@ -325,9 +320,8 @@ tflite_model = converter.convert()
 
 ---
 
+<span id="sec-8"></span>
 ## 8. 📊 Matplotlib 치트시트 (데이터 시각화)
-
-![Matplotlib](./slides/slide_8.jpg)
 
 ### 다양한 차트 생성 및 레이아웃 제어
 ```python
@@ -359,9 +353,8 @@ plt.show()
 
 ---
 
+<span id="sec-9"></span>
 ## 9. 🌊 Seaborn 치트시트 (통계적 데이터 시각화)
-
-![Seaborn](./slides/slide_9.jpg)
 
 ### 주요 기능 및 API 일람표
 | 기능 구분 | API 코드 문법 | 핵심 설명 및 옵션 |
@@ -426,6 +419,7 @@ plt.show()
 
 ---
 
+<span id="sec-10"></span>
 ## 💡 Matplotlib vs Seaborn 완벽 비교 및 활용 가이드
 
 | 비교 항목 | Matplotlib 📊 | Seaborn 🌊 |

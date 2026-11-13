@@ -1,3 +1,4 @@
 {
-  "python.defaultInterpreterPath": "C:\\Users\\wede9\\AppData\\Local\\Python\\pythoncore-3.15-64\\python.exe"
+  "python.defaultInterpreterPath": "C:\\Users\\wede9\\AppData\\Local\\Python\\pythoncore-3.15-64\\python.exe",
+  "python-envs.defaultEnvManager": "ms-python.python:system"
 }
